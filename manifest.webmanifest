@@ -1,0 +1,17 @@
+{
+  "name": "TRIVEO — Swim • Bike • Run",
+  "short_name": "TRIVEO",
+  "lang": "fr-CA",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#111614",
+  "theme_color": "#111614",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
