@@ -1,0 +1,15 @@
+.run-overlay{position:fixed;inset:0;background:#000b;z-index:100;display:flex;align-items:center;justify-content:center;padding:calc(14px + env(safe-area-inset-top)) 14px calc(14px + env(safe-area-inset-bottom));backdrop-filter:blur(6px)}
+.run-overlay[hidden],#runOverlay[hidden]{display:none!important}
+.run-dialog{width:min(620px,100%);max-height:100%;overflow:auto;overscroll-behavior:contain;background:var(--sb);border:1px solid var(--ln);border-radius:22px;padding:clamp(18px,4vw,30px);box-shadow:0 24px 80px #0006}
+.run-dialog h2{margin:16px 0}
+.run-progress{height:6px;background:var(--c2);border-radius:20px;overflow:hidden;margin-top:14px}
+.run-progress i{display:block;height:100%;background:var(--ac);border-radius:20px;transition:width .2s}
+.run-fields{display:grid;gap:15px}
+.run-field{display:grid;gap:7px;font-size:13px;font-weight:600;color:var(--tx)}
+.run-field input,.run-field select{width:100%;min-width:0;border:1px solid var(--ln);border-radius:12px;background:var(--c2);color:var(--tx);padding:12px;font-size:15px;height:48px}
+.run-field span{display:flex;align-items:center;gap:12px}
+.run-field span input{max-width:170px}
+.run-dialog .wr{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.run-dialog button{min-height:44px}
+#runErr{color:#f4b6a8;min-height:18px}
+@media(max-width:600px){.run-overlay{align-items:stretch}.run-dialog{border-radius:18px;max-height:100%;padding:18px}.run-dialog h2{font-size:21px}}
