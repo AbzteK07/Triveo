@@ -57,7 +57,18 @@ html+='<div class="card st"><h3>Repères d’entraînement</h3><p>Endurance : RP
 html+=p.weeks.map(w=>'<details class="card st" style="margin-bottom:12px" '+(w.index===1?'open':'')+'><summary><strong>Semaine '+w.index+'</strong> · '+w.volume.toLocaleString('fr-CA')+' km'+(w.recovery?' · allégée':'')+'</summary><div style="display:grid;gap:10px;margin-top:12px">'+w.sessions.map((s,j)=>'<div style="border-top:1px solid var(--ln);padding-top:10px"><strong>Sortie '+(j+1)+' · '+s.kind+'</strong><p>'+s.km.toLocaleString('fr-CA')+' km · ~'+s.duration+' min · '+s.effort+'</p><p class="mu">'+s.description+'</p></div>').join('')+'</div></details>').join('');
 return html;
 }
-window.runPlanPage=function(){return hd('Plan de course','Évaluation et programmation personnalisée')+content()};
+let trainingDiscipline='run';
+window.trainingSetDiscipline=function(which){if(!['run','bike','swim'].includes(which))return;trainingDiscipline=which;R()};
+window.trainingHubPage=function(){
+ const options=[['run','footprints','Course à pied'],['bike','bike','Vélo'],['swim','waves','Natation']];
+ const nav='<div class="training-disciplines" role="group" aria-label="Choisir une discipline">'+options.map(([id,icon,name])=>'<button class="btn '+(trainingDiscipline===id?'pri':'sec')+'" type="button" aria-pressed="'+(trainingDiscipline===id)+'" onclick="trainingSetDiscipline(\''+id+'\')">'+I(icon)+' '+name+'</button>').join('')+'</div>';
+ let section;
+ if(trainingDiscipline==='run')section=content();
+ else if(trainingDiscipline==='bike')section='<div class="card st"><h3>Plan de vélo</h3><p>Cette discipline sera ajoutée au même espace. Tes activités de vélo actuelles restent accessibles dans le calendrier et l’historique.</p><p class="mu">Un futur questionnaire pourra tenir compte du temps disponible, des sorties récentes, du type d’entraîneur et de la puissance ou de la fréquence cardiaque si disponibles. Aucun plan de vélo n’est généré pour le moment.</p></div>';
+ else section='<div class="card st"><h3>Plan de natation</h3><p>Cette discipline sera intégrée à cet espace. Tes activités de natation actuelles restent accessibles dans le calendrier et l’historique.</p><p class="mu">Le futur questionnaire pourra prendre en compte la technique, les distances continues, les allures sur 100 m et l’accès à la piscine. Aucun plan de natation n’est généré pour le moment.</p></div>';
+ return hd('Entraînement','Tes trois disciplines, réunies au même endroit')+nav+section;
+};
+window.runPlanPage=window.trainingHubPage;
 window.runOpen=()=>{draft={...data()};step=0;runModal()};
 function runModal(){
 const html='<div class="run-overlay" role="dialog" aria-modal="true" aria-label="Évaluation course"><div class="run-dialog"><div class="wr" style="justify-content:space-between"><strong>Évaluation course · '+(step+1)+'/5</strong><button class="btn sec" onclick="runClose()">Fermer</button></div><div class="run-progress"><i style="width:'+((step+1)*20)+'%"></i></div><h2>'+steps[step]+'</h2><form id="runForm"><div class="run-fields">'+fields()+'</div><div class="wr" style="justify-content:space-between;margin-top:18px"><button type="button" class="btn sec" onclick="runBack()" '+(step===0?'disabled':'')+'>Retour</button><button class="btn pri" type="submit">'+(step===4?'Créer mon plan':'Continuer')+'</button></div><p id="runErr" role="alert" class="mu"></p></form></div></div>';
