@@ -1,0 +1,72 @@
+/* TRIVEO - responsive tablet layout, 2026-11-14 */
+/* Prevent long content from expanding the layout beyond the viewport. */
+html,body{max-width:100%;overflow-x:clip}
+main,.w,.g,.g>*,.card,.card>*,.cl,.exg,.exg>*,.rehab-grid>*{min-width:0}
+.card,.wd,.li,.row,.hd,.wr,.seg,.training-disciplines{max-width:100%}
+.card p,.card h2,.card h3,.card strong,.card small,.card .mu,.wd,.row,.hd,.li,.tg,.sig,.ni span,summary{overflow-wrap:anywhere}
+.card .row>*:not(button),.card .li>*:not(button),.hd>*,.wr>*,.movement-info>*{min-width:0}
+.card .row,.hd{flex-wrap:wrap}
+.card .btn,.hd .btn,.training-disciplines .btn{white-space:normal;text-align:center;min-height:44px;height:auto;padding-block:10px;line-height:1.35}
+.card input,.card textarea,.card select,.run-field input,.run-field select{max-width:100%;min-width:0}
+.card .seg{min-width:0;max-width:100%;flex-wrap:wrap}
+.card .seg button{min-width:0;flex:1 1 80px;padding-inline:8px;white-space:normal;overflow-wrap:anywhere}
+.card .tg{height:auto;min-height:28px;padding-block:5px;max-width:100%}
+.card .tg svg,.btn svg{flex-shrink:0}
+.card .exg,.rehab-grid{min-width:0}
+.card .movement-stage,.card video,.card iframe{max-width:100%}
+.training-disciplines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.training-disciplines .btn{width:100%;min-width:0}
+.run-overlay .run-dialog,.run-fields,.run-field{min-width:0;max-width:100%}
+
+/* Tablet portrait and compact landscape: do not force 4 KPIs or 7-day cells into narrow columns. */
+@media(min-width:700px) and (max-width:1199px){
+ main{padding:26px 24px calc(92px + env(safe-area-inset-bottom,0px))}
+ .w{width:100%;max-width:100%}
+ .g{gap:14px;grid-template-columns:repeat(12,minmax(0,1fr))}
+ .g>.k{grid-column:span 6}
+ .g>.s4,.g>.s6,.g>.s8{grid-column:span 12}
+ .g .cl>.card{grid-column:span 12}
+ .card{padding:18px}
+ .hd{align-items:center;gap:12px;margin-bottom:18px}
+ .hd h1{max-width:100%}
+ .wk{grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+ .wd{min-width:0;min-height:100px;padding:10px;gap:5px}
+ .dh{min-width:0;gap:2px}
+ .exg{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .rehab-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .training-disciplines{gap:8px}
+}
+/* At 900px the sidebar consumes almost a quarter of the viewport. */
+@media(min-width:900px) and (max-width:1199px){
+ #sb{width:204px;padding:22px 9px}
+ #sb .ni{padding:0 10px;gap:9px}
+ #sb .brand{padding-inline:10px;gap:8px}
+ #sb .brand b{font-size:15px;letter-spacing:.12em}
+ #sb .sig{padding-inline:10px}
+ main{margin-left:204px;padding:26px 24px 38px}
+ body.col #sb{width:72px}
+ body.col main{margin-left:72px}
+ .g>.k{grid-column:span 6}
+ .exg{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* Tablet landscape with sidebar remains readable when width is plentiful. */
+@media(min-width:1200px) and (max-width:1399px){
+ main{padding-inline:28px}
+ .g{gap:14px}
+ .g>.k{grid-column:span 6}
+ .wk{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .exg{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(min-width:700px) and (max-width:899px){
+ #bn{grid-template-columns:repeat(6,minmax(0,1fr));overflow-x:hidden;gap:0}
+ #bn .ni{min-width:0;padding:5px 3px;font-size:11px;overflow-wrap:anywhere}
+ #bn .ni span{display:block;line-height:1.2}
+}
+@media(max-width:699px){
+ main{padding-inline:16px}
+ .training-disciplines{gap:6px}
+ .training-disciplines .btn{font-size:12px;padding:9px 4px}
+ .g>.k{min-width:0}
+ #bn{grid-template-columns:repeat(6,minmax(0,1fr))}
+ #bn .ni{min-width:0;font-size:9px}
+}
